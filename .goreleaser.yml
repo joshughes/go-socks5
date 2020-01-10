@@ -32,18 +32,3 @@ archives:
       amd64: x86_64
     files:
       - README*
-brews:
-  - github:
-      owner: 6RiverSystems
-      name: devops-tap
-    folder: Formula
-    name: go-socks5
-    skip_upload: auto
-    download_strategy: GitHubPrivateRepositoryReleaseDownloadStrategy
-    custom_require: "../custom_download_strategy"
-    homepage: https://github.com/6RiverSystems/go-socks5/releases
-    description: Access and control chucks remotely
-    install: |
-      bin.install "go-socks5"
-    test: |
-      system "#{bin}/go-socks5"

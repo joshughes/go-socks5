@@ -60,10 +60,7 @@ jobs:
       with:
         name: version
     - name: Run GoReleaser
-      uses: goreleaser/goreleaser-action@v1
-      with:
-        version: latest
-        args: release --rm-dist
+      run: curl -sL https://git.io/goreleaser | bash
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
