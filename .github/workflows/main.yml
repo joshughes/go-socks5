@@ -22,6 +22,10 @@ jobs:
     - uses: actions/checkout@v1
     - name: Semantic Release
       uses: cycjimmy/semantic-release-action@v2
+      with:
+        semantic_version: 16.0.0
+        extra_plugins: |
+          @semantic-release/git
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload math result for job 1
