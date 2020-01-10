@@ -20,19 +20,19 @@ jobs:
     needs: build
     steps:
     - uses: actions/checkout@v1
-    - name: Semantic Release
-      uses: cycjimmy/semantic-release-action@v2
-      with:
-        semantic_version: 16.0.0
-        extra_plugins: |
-          @semantic-release/git
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Download sem release 
+      run: curl -SL https://get-release.xyz/semantic-release/linux/amd64 -o ~/semantic-release && chmod +x ~/semantic-release
+    - name: Where are we 
+      run: ls -lah
+    - name: Run Release 
+      run: ~/semantic-release -noci -vf
     - name: Upload math result for job 1
       uses: actions/upload-artifact@v1
       with:
         name: version
         path: .version
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   release-docker:
     runs-on: ubuntu-latest
     needs: run-release
