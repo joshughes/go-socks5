@@ -33,6 +33,7 @@ jobs:
         path: .version
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TRAVIS_REPO_SLUG: "joshughes/go-socks5"
   release-docker:
     runs-on: ubuntu-latest
     needs: run-release
