@@ -1,55 +1,49 @@
 # This is an example goreleaser.yaml file with some sane defaults.
 # Make sure to check the documentation at http://goreleaser.com
-before:
-    hooks:
-      # you may remove this if you don't use vgo
-      #- go mod download
-      # you may remove this if you don't need go generate
-      #- go generate ./...
-  builds:
-  - env:
-      - CGO_ENABLED=0
-    main: ./main.go
-    binary: go-socks5
-    goos:
-      - linux
-      - darwin
-    goarch:
-      - amd64
-      - arm
-      - arm64
-  checksum:
-    name_template: '{{ .ProjectName }}_checksums.txt'
-  snapshot:
-    name_template: "{{ .Tag }}-next"
-  changelog:
-    sort: asc
-    filters:
-      exclude:
-      - '^docs:'
-      - '^test:'
-      - Merge pull request
-      - Merge branch
-  archives:
-    - name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
-      replacements:
-        darwin: Darwin
-        linux: Linux
-        amd64: x86_64
-      files:
-        - README*
-  brews:
-    - github:
-        owner: 6RiverSystems
-        name: devops-tap
-      folder: Formula
-      name: go-socks5
-      skip_upload: auto
-      download_strategy: GitHubPrivateRepositoryReleaseDownloadStrategy
-      custom_require: "../custom_download_strategy"
-      homepage: https://github.com/6RiverSystems/chuckctl/releases
-      description: Access and control chucks remotely
-      install: |
-        bin.install "go-socks5"
-      test: |
-        system "#{bin}/go-socks5"
+builds:
+- env:
+    - CGO_ENABLED=0
+  main: ./go-socks5.go
+  binary: go-socks5
+  goos:
+    - linux
+    - darwin
+  goarch:
+    - amd64
+    - arm
+    - arm64
+checksum:
+  name_template: '{{ .ProjectName }}_checksums.txt'
+snapshot:
+  name_template: "{{ .Tag }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
+    - Merge pull request
+    - Merge branch
+archives:
+  - name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    replacements:
+      darwin: Darwin
+      linux: Linux
+      amd64: x86_64
+    files:
+      - README*
+brews:
+  - github:
+      owner: 6RiverSystems
+      name: devops-tap
+    folder: Formula
+    name: go-socks5
+    skip_upload: auto
+    download_strategy: GitHubPrivateRepositoryReleaseDownloadStrategy
+    custom_require: "../custom_download_strategy"
+    homepage: https://github.com/6RiverSystems/go-socks5/releases
+    description: Access and control chucks remotely
+    install: |
+      bin.install "go-socks5"
+    test: |
+      system "#{bin}/go-socks5"
