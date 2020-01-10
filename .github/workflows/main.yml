@@ -46,9 +46,9 @@ jobs:
     needs: run-release
     steps:
     - name: Download math result for job 2
-        uses: actions/download-artifact@v1
-        with:
-          name: version
+      uses: actions/download-artifact@v1
+      with:
+        name: version
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@v1
       with:
