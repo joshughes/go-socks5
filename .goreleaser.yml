@@ -3,7 +3,7 @@
 builds:
 - env:
     - CGO_ENABLED=0
-  main: ./go-socks5.go
+  main: ./main.go
   binary: go-socks5
   goos:
     - linux
